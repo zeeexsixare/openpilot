@@ -152,9 +152,9 @@ class AlertManager(object):
         Priority.HIGH, "steerRequired", "chimeRepeated", .1, .1, .1),
 
     "startup": Alert(
-        "Be ready to take over at any time",
-        "Always keep hands on wheel and eyes on road",
+        #"Be ready to take over at any time",
         "Tire stiffness, KpV from 0.6 to 0.3",
+        "Always keep hands on wheel and eyes on road",
         AlertStatus.normal, AlertSize.mid,
         Priority.LOWEST, None, None, 0., 0., 15.),
 
