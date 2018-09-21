@@ -154,6 +154,7 @@ class AlertManager(object):
     "startup": Alert(
         "Be ready to take over at any time",
         "Always keep hands on wheel and eyes on road",
+        "Tire stiffness, KpV from 0.6 to 0.3",
         AlertStatus.normal, AlertSize.mid,
         Priority.LOWEST, None, None, 0., 0., 15.),
 
