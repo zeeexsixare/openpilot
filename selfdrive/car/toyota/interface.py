@@ -136,7 +136,8 @@ class CarInterface(object):
       ret.mass = 4607 * CV.LB_TO_KG + std_cargo #mean between normal and hybrid limited
      #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
-      ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
+     #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
+      ret.steerKpV, ret.steerKiV = [[0.2], [0.04]]
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
       ret.steerKf = 0.00003
