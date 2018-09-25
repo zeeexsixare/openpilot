@@ -138,7 +138,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
       ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
      #ret.steerKf = 0.00006
-      ret.steerKf = 0.00012
+     #ret.steerKf = 0.00012
+      ret.steerKf = 0.00003
 
     ret.steerRateCost = 1.
     ret.centerToFront = ret.wheelbase * 0.44
