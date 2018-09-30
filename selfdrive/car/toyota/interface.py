@@ -130,6 +130,7 @@ class CarInterface(object):
 
     elif candidate in [CAR.HIGHLANDER, CAR.HIGHLANDERH]:
       ret.safetyParam = 100
+      ret.safetyParam = 50
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
       tire_stiffness_factor = 0.75 # not optimized yet
