@@ -129,7 +129,7 @@ class CarInterface(object):
       ret.steerKf = 0.00006
 
     elif candidate in [CAR.HIGHLANDER, CAR.HIGHLANDERH]:
-      ret.safetyParam = 100
+      #ret.safetyParam = 100
       ret.safetyParam = 50
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
