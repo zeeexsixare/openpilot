@@ -136,20 +136,22 @@ class CarInterface(object):
       ret.steerRatio = 16.0
       tire_stiffness_factor = 0.75 # Close to RX value
       ret.mass = 4607 * CV.LB_TO_KG + std_cargo #mean between normal and hybrid limited
-     #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
+      ret.steerKiBP, ret.steerKpBP = [[0.,16.,47.], [0.,16.,47.]]
+      #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.04]]
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.04]]
-      ret.steerKpV, ret.steerKiV = [[0.3], [0.01]]
+     #ret.steerKpV, ret.steerKiV = [[0.3], [0.01]]
+      ret.steerKpV, ret.steerKiV = [[0.3,0.45,0.6], [0.0002,0.02,0.04]]
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
-      ret.steerKf = 0.00003
+      ret.steerKf = 0.00006
 
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
     #ret.steerRateCost = 2.0
-    ret.steerRateCost = 0.5
+    ret.steerRateCost = 1.0
     ret.centerToFront = ret.wheelbase * 0.44
 
     ret.longPidDeadzoneBP = [0., 9.]
