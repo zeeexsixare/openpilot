@@ -150,7 +150,8 @@ class CarInterface(object):
 
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
-      ret.steerKf = 0.00006
+     #ret.steerKf = 0.00006
+      ret.steerKf = 0.00010
 
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
