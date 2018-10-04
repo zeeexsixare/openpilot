@@ -132,6 +132,7 @@ class CarInterface(object):
       #ret.safetyParam = 100
       #ret.safetyParam = 50
       ret.safetyParam = 100
+      ret.steerActuatorDelay = 0.20
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
       tire_stiffness_factor = 0.75 # Close to RX value
@@ -147,9 +148,9 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.01]]
      #ret.steerKpV, ret.steerKiV = [[0.3,0.45,0.6], [0.0002,0.02,0.04]]
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.02]]
-      ret.steerKpV, ret.steerKiV = [[0.45], [0.02]]
+     #ret.steerKpV, ret.steerKiV = [[0.45], [0.02]]
+      ret.steerKpV, ret.steerKiV = [[0.2], [0.015]]
 
-      
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
      #ret.steerKf = 0.00006
