@@ -135,7 +135,8 @@ class CarInterface(object):
       ret.steerActuatorDelay = 0.20
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
-      tire_stiffness_factor = 0.75 # Close to RX value
+      #tire_stiffness_factor = 0.75 # Close to RX value
+      tire_stiffness_factor = 1.0 # Prius people like 1.0
       ret.mass = 4607 * CV.LB_TO_KG + std_cargo #mean between normal and hybrid limited
 
       #ret.steerKiBP, ret.steerKpBP = [[0.,16.,47.], [0.,16.,47.]]
@@ -150,14 +151,17 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.02]]
      #ret.steerKpV, ret.steerKiV = [[0.45], [0.02]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.015]]
-      ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
+     #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
+      ret.steerKpV, ret.steerKiV = [[0.12], [0.015]]
+
 
 
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00010
-      ret.steerKf = 0.00020
+     #ret.steerKf = 0.00020
+      ret.steerKf = 0.00030
 
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
