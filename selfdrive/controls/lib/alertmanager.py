@@ -154,7 +154,7 @@ class AlertManager(object):
 
     "startup": Alert(
         #"Be ready to take over at any time",
-        "KpV,KiV=[[0.12], [0.015]], Kf=0.00030, TireStif=1",
+        "KpV0.15, KiV0.015, steerKf0.00030",
         "Always keep hands on wheel and eyes on road",
         AlertStatus.normal, AlertSize.mid,
         Priority.LOW_LOWEST, None, None, 0., 0., 15.),
