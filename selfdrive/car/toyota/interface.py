@@ -152,8 +152,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.45], [0.02]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.015]]
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
-      ret.steerKpV, ret.steerKiV = [[0.15], [0.015]]
-
+     #ret.steerKpV, ret.steerKiV = [[0.15], [0.015]]
+      ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
 
 
      #ret.steerKf = 0.00006
