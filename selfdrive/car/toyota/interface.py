@@ -147,13 +147,13 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.04]]
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.04]]
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.01]]
-     #ret.steerKpV, ret.steerKiV = [[0.3,0.45,0.6], [0.0002,0.02,0.04]]
+     #ret.steerKpV, ret.steerKiV = [[0.3,0.45,0.6], [0.0002,0.02,0.04]] #tried e-mo's values
      #ret.steerKpV, ret.steerKiV = [[0.3], [0.02]]
-     #ret.steerKpV, ret.steerKiV = [[0.45], [0.02]]
+     #ret.steerKpV, ret.steerKiV = [[0.45], [0.02]] Pingpong seemed to return
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.015]]
-     #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
-     #ret.steerKpV, ret.steerKiV = [[0.15], [0.015]]
-     #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
+     #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]] #drives drunk, weaves noticeably
+     #ret.steerKpV, ret.steerKiV = [[0.15], [0.015]] #pretty good, still some weaving
+     #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]] #very minor weaving but can still see it in data
      #ret.steerKpV, ret.steerKiV = [[0.25], [0.025]]
       ret.steerKpV, ret.steerKiV = [[0.4], [0.015]] #try E-Mo's values
 
@@ -164,7 +164,8 @@ class CarInterface(object):
      #ret.steerKf = 0.00010
      #ret.steerKf = 0.00020
      #ret.steerKf = 0.00030
-      ret.steerKf = 0.00015 #try values closer to E-Mo's
+     #ret.steerKf = 0.00015 #try values closer to E-Mo's
+      ret.steerKf = 0.0004 #E-Mo's understeered a lot, raising torque further
 
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
