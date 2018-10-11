@@ -139,9 +139,9 @@ class CarInterface(object):
       tire_stiffness_factor = 1.0 # Prius people like 1.0
       ret.mass = 4607 * CV.LB_TO_KG + std_cargo #mean between normal and hybrid limited
 
-      #ret.steerKiBP, ret.steerKpBP = [[0.,16.,47.], [0.,16.,47.]]
+     #ret.steerKiBP, ret.steerKpBP = [[0.,16.,47.], [0.,16.,47.]]
       
-      #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
+     #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.04]]
@@ -154,7 +154,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
      #ret.steerKpV, ret.steerKiV = [[0.15], [0.015]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
-      ret.steerKpV, ret.steerKiV = [[0.25], [0.025]]
+     #ret.steerKpV, ret.steerKiV = [[0.25], [0.025]]
+      ret.steerKpV, ret.steerKiV = [[0.4], [0.015]] #try E-Mo's values
 
 
      #ret.steerKf = 0.00006
@@ -162,7 +163,8 @@ class CarInterface(object):
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00010
      #ret.steerKf = 0.00020
-      ret.steerKf = 0.00030
+     #ret.steerKf = 0.00030
+      ret.steerKf = 0.00015 #try values closer to E-Mo's
 
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
