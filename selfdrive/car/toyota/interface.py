@@ -165,8 +165,9 @@ class CarInterface(object):
      #ret.steerKf = 0.00020
      #ret.steerKf = 0.00030
      #ret.steerKf = 0.00015 #try values closer to E-Mo's
-      ret.steerKf = 0.0004 #E-Mo's understeered a lot, raising torque further
-
+     #ret.steerKf = 0.0004 #E-Mo's understeered a lot, raising torque further
+      ret.steerKf = 0.0003 #previous value 0.0004 is too far, back down to 3 
+      
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
     #ret.steerRateCost = 2.0
