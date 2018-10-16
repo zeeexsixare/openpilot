@@ -169,7 +169,8 @@ class CarInterface(object):
      #ret.steerKf = 0.0004 #E-Mo's understeered a lot, raising torque further
      #ret.steerKf = 0.0003 #previous value 0.0004 is too far, back down to 3 
      #ret.steerKf = 0.0002 #still too much, some strong pingpong on turns, so back down to 2
-      ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
+     #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
+      ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
             
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
