@@ -156,7 +156,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]] #very minor weaving but can still see it in data
      #ret.steerKpV, ret.steerKiV = [[0.25], [0.025]]
      #ret.steerKpV, ret.steerKiV = [[0.4], [0.015]] #try E-Mo's values
-      ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #try E-Mo's sub 60mph values
+     #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #try E-Mo's sub 60mph values
+      ret.steerKpV, ret.steerKiV = [[0.2], [0.00002]] #Trying to damp out further
 
 
      #ret.steerKf = 0.00006
@@ -170,7 +171,8 @@ class CarInterface(object):
      #ret.steerKf = 0.0003 #previous value 0.0004 is too far, back down to 3 
      #ret.steerKf = 0.0002 #still too much, some strong pingpong on turns, so back down to 2
      #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
-      ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
+     #ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
+      ret.steerKf = 0.0002 #Trying raising torque to reduce KpV 
             
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
