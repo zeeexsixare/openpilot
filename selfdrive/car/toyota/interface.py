@@ -132,7 +132,10 @@ class CarInterface(object):
       #ret.safetyParam = 100
       #ret.safetyParam = 50
       ret.safetyParam = 100
-      ret.steerActuatorDelay = 0.20
+      
+      #ret.steerActuatorDelay = 0.2
+      ret.steerActuatorDelay = 0.1
+      
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
       #tire_stiffness_factor = 0.75 # Close to RX value
@@ -157,7 +160,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.25], [0.025]]
      #ret.steerKpV, ret.steerKiV = [[0.4], [0.015]] #try E-Mo's values
      #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #try E-Mo's sub 60mph values
-      ret.steerKpV, ret.steerKiV = [[0.2], [0.00002]] #Trying to damp out further
+     #ret.steerKpV, ret.steerKiV = [[0.2], [0.00002]] #Trying to damp out further
+      ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #Revert to E-Mo, testing actuator delay
 
 
      #ret.steerKf = 0.00006
