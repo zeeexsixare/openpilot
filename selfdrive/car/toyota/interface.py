@@ -135,7 +135,7 @@ class CarInterface(object):
       
       #ret.steerActuatorDelay = 0.2
       #ret.steerActuatorDelay = 0.1
-      ret.steerActuatorDelay = 0.3
+      ret.steerActuatorDelay = 0.1
       
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
