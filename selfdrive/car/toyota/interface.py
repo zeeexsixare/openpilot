@@ -162,7 +162,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.4], [0.015]] #try E-Mo's values
      #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #try E-Mo's sub 60mph values
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.00002]] #Trying to damp out further
-      ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #Revert to E-Mo, testing actuator delay
+     #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #Revert to E-Mo, testing actuator delay
+      ret.steerKpV, ret.steerKiV = [[0.12], [0.015]] # Trying Daehahn's parameters
 
 
      #ret.steerKf = 0.00006
@@ -177,7 +178,8 @@ class CarInterface(object):
      #ret.steerKf = 0.0002 #still too much, some strong pingpong on turns, so back down to 2
      #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
      #ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
-      ret.steerKf = 0.0002 #Trying raising torque to reduce KpV 
+     #ret.steerKf = 0.0002 #Trying raising torque to reduce KpV 
+      ret.steerKf = 0.00030 #Trying Daehahn's parameters
             
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
@@ -289,7 +291,7 @@ class CarInterface(object):
     ret.cruiseState.speed = self.CS.v_cruise_pcm * CV.KPH_TO_MS
     ret.cruiseState.available = bool(self.CS.main_on)
     ret.cruiseState.speedOffset = 0.
-    if self.CP.carFingerprint in [CAR.RAV4H]:#, CAR.HIGHLANDERH, CAR.HIGHLANDER]:
+    if self.CP.carFingerprint in [CAR.RAV4H, CAR.HIGHLANDERH, CAR.HIGHLANDER]:
       # ignore standstill in hybrid vehicles, since pcm allows to restart without
       # receiving any special command
       ret.cruiseState.standstill = False
