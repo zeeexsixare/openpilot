@@ -163,8 +163,8 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #try E-Mo's sub 60mph values
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.00002]] #Trying to damp out further
      #ret.steerKpV, ret.steerKiV = [[0.35], [0.0002]] #Revert to E-Mo, testing actuator delay
-      ret.steerKpV, ret.steerKiV = [[0.12], [0.015]] # Trying Daehahn's parameters
-
+     #ret.steerKpV, ret.steerKiV = [[0.12], [0.015]] # Trying Daehahn's parameters
+      ret.steerKpV, ret.steerKiV = [[0.235], [0.015]] # Trying average of KpV but keeping KiV for damping on turns
 
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
@@ -179,8 +179,9 @@ class CarInterface(object):
      #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
      #ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
      #ret.steerKf = 0.0002 #Trying raising torque to reduce KpV 
-      ret.steerKf = 0.00030 #Trying Daehahn's parameters
-            
+     #ret.steerKf = 0.00030 #Trying Daehahn's parameters
+      ret.steerKf = 0.00025 #Trying average of Daehahn and P Lee params
+      
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
     #ret.steerRateCost = 2.0
