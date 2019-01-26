@@ -136,11 +136,11 @@ class CarInterface(object):
       #ret.safetyParam = 100
       #ret.safetyParam = 50
       ret.safetyParam = 100
-      
+
       #ret.steerActuatorDelay = 0.2
       #ret.steerActuatorDelay = 0.1
       ret.steerActuatorDelay = 0.16
-      
+
       ret.wheelbase = 2.78
       ret.steerRatio = 16.0
       #tire_stiffness_factor = 0.75 # Close to RX value
@@ -148,7 +148,7 @@ class CarInterface(object):
       ret.mass = 4607 * CV.LB_TO_KG + std_cargo #mean between normal and hybrid limited
 
      #ret.steerKiBP, ret.steerKpBP = [[0.,16.,47.], [0.,16.,47.]]
-      
+
      #ret.steerKpV, ret.steerKiV = [[0.6], [0.05]]
      #ret.steerKpV, ret.steerKiV = [[0.1], [0.01]]
      #ret.steerKpV, ret.steerKiV = [[0.2], [0.02]]
@@ -170,7 +170,7 @@ class CarInterface(object):
      #ret.steerKpV, ret.steerKiV = [[0.12], [0.015]] # Trying Daehahn's parameters
      #ret.steerKpV, ret.steerKiV = [[0.235], [0.015]] # Trying average of KpV but keeping KiV for damping on turns
       ret.steerKpV, ret.steerKiV = [[0.18], [0.0075]] # Still wandering on straights, lower KiV
-      
+
 
      #ret.steerKf = 0.00006
      #ret.steerKf = 0.00012
@@ -182,13 +182,14 @@ class CarInterface(object):
      #ret.steerKf = 0.0004 #E-Mo's understeered a lot, raising torque further
      #ret.steerKf = 0.0003 #previous value 0.0004 is too far, back down to 3 
      #ret.steerKf = 0.0002 #still too much, some strong pingpong on turns, so back down to 2
-     #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1 
-     #ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val 
-     #ret.steerKf = 0.0002 #Trying raising torque to reduce KpV 
+     #ret.steerKf = 0.0001 #still too much, some strong pingpong on turns > 10 degrees, so back down to 1
+     #ret.steerKf = 0.00006 #steering getting weaker now, but still pingpong on tight curves, back to stock val
+     #ret.steerKf = 0.0002 #Trying raising torque to reduce KpV
      #ret.steerKf = 0.00030 #Trying Daehahn's parameters
      #ret.steerKf = 0.00025 #Trying average of Daehahn and P Lee params
-      ret.steerKf = 0.0003 #Slightly too weak maybe, back up to Daehahn's parameters
-      
+     #ret.steerKf = 0.0003 #Slightly too weak maybe, back up to Daehahn's parameters
+      ret.steerKf = 0.00015 #Reduce Kf per rbiasini suggestion PR#464
+
     #ret.steerRateCost = 1
     #ret.steerRateCost = 0.5
     #ret.steerRateCost = 2.0
@@ -237,6 +238,7 @@ class CarInterface(object):
     ret.enableCamera = not check_ecu_msgs(fingerprint, ECU.CAM)
     ret.enableDsu = not check_ecu_msgs(fingerprint, ECU.DSU)
     ret.enableApgs = False #not check_ecu_msgs(fingerprint, ECU.APGS)
+    ret.openpilotLongitudinalControl = ret.enableCamera and ret.enableDsu
     cloudlog.warn("ECU Camera Simulated: %r", ret.enableCamera)
     cloudlog.warn("ECU DSU Simulated: %r", ret.enableDsu)
     cloudlog.warn("ECU APGS Simulated: %r", ret.enableApgs)
@@ -400,7 +402,8 @@ class CarInterface(object):
 
     self.CC.update(self.sendcan, c.enabled, self.CS, self.frame,
                    c.actuators, c.cruiseControl.cancel, c.hudControl.visualAlert,
-                   c.hudControl.audibleAlert, self.forwarding_camera)
+                   c.hudControl.audibleAlert, self.forwarding_camera,
+                   c.hudControl.leftLaneVisible, c.hudControl.rightLaneVisible, c.hudControl.leadVisible)
 
     self.frame += 1
     return False
