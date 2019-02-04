@@ -105,16 +105,20 @@ def handle_fan(max_cpu_temp, bat_temp, fan_speed):
   return fan_speed
 
 
-def check_car_battery_voltage(should_start, health, charging_disabled):
+def check_car_battery_voltage(should_start, health, charging_disabled, msg):
 
   # charging disallowed if:
   #   - there are health packets from panda, and;
   #   - 12V battery voltage is too low, and;
   #   - onroad isn't started
-  if charging_disabled and (health is None or health.health.voltage > 11800):
+  #   - keep battery within 67-70% State of Charge to preserve longevity
+  if charging_disabled and (health is None or health.health.voltage > 11800) and msg.thermal.batteryPercent < 60:
     charging_disabled = False
     os.system('echo "1" > /sys/class/power_supply/battery/charging_enabled')
-  elif not charging_disabled and health is not None and health.health.voltage < 11500 and not should_start:
+  elif not charging_disabled and (msg.thermal.batteryPercent > 70 or (health is not None and health.health.voltage < 11500 and not should_start)):
+    charging_disabled = True
+    os.system('echo "0" > /sys/class/power_supply/battery/charging_enabled')
+  elif msg.thermal.batteryCurrent < 0 and msg.thermal.batteryPercent > 70:
     charging_disabled = True
     os.system('echo "0" > /sys/class/power_supply/battery/charging_enabled')
 
@@ -180,7 +184,7 @@ def thermald_thread():
   os.system('echo "1" > /sys/class/power_supply/battery/charging_enabled')
 
   params = Params()
-
+  
   while 1:
     health = messaging.recv_sock(health_sock, wait=True)
     location = messaging.recv_sock(location_sock)
@@ -195,16 +199,6 @@ def thermald_thread():
     msg.thermal.freeSpace = avail
     with open("/sys/class/power_supply/battery/capacity") as f:
       msg.thermal.batteryPercent = int(f.read())
-      
-      #begining of limit charging. read the charging enabled flag in to charging_enabled
-      with open("/sys/class/power_supply/battery/charging_enabled") as f:
-        charging_enabled = int(f.read())
-      if msg.thermal.batteryPercent > 70 and charging_enabled:
-        os.system("echo 0 > /sys/class/power_supply/battery/charging_enabled")
-      elif msg.thermal.batteryPercent < 67 and not charging_enabled:
-        os.system("echo 1 > /sys/class/power_supply/battery/charging_enabled")
-        #end limit charging
-      
     with open("/sys/class/power_supply/battery/status") as f:
       msg.thermal.batteryStatus = f.read().strip()
     with open("/sys/class/power_supply/battery/current_now") as f:
@@ -213,7 +207,7 @@ def thermald_thread():
       msg.thermal.batteryVoltage = int(f.read())
     with open("/sys/class/power_supply/usb/present") as f:
       msg.thermal.usbOnline = bool(int(f.read()))
-
+        
     current_filter.update(msg.thermal.batteryCurrent / 1e6)
 
     # TODO: add car battery voltage check
@@ -272,7 +266,7 @@ def thermald_thread():
     should_start = should_start and msg.thermal.freeSpace > 0.02
 
     # require usb power in passive mode
-    #should_start = should_start and (not passive or msg.thermal.usbOnline)
+    should_start = should_start and (not passive or msg.thermal.usbOnline)
 
     # confirm we have completed training and aren't uninstalling
     should_start = should_start and accepted_terms and (passive or completed_training) and (not do_uninstall)
@@ -300,8 +294,14 @@ def thermald_thread():
          started_seen and (sec_since_boot() - off_ts) > 60:
         os.system('LD_LIBRARY_PATH="" svc power shutdown')
 
-    charging_disabled = check_car_battery_voltage(should_start, health, charging_disabled)
-
+    charging_disabled = check_car_battery_voltage(should_start, health, charging_disabled, msg)
+    
+    # need to force batteryStatus because after NEOS update for 0.5.7 this doesn't work properly
+    if msg.thermal.batteryCurrent > 0:
+      msg.thermal.batteryStatus = "Discharging"
+    else:
+      msg.thermal.batteryStatus = "Charging"
+      
     msg.thermal.chargingDisabled = charging_disabled
     msg.thermal.chargingError = current_filter.x > 1.0   # if current is > 1A out, then charger might be off
     msg.thermal.started = started_ts is not None
@@ -327,4 +327,3 @@ def main(gctx=None):
 
 if __name__ == "__main__":
   main()
-
